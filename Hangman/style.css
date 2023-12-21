@@ -1,0 +1,30 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column; /* Center content vertically */
+    height: 100vh;
+    margin: 0;
+}
+
+#hangman-container {
+    text-align: center;
+}
+
+#word-container {
+    margin: 20px 0;
+    font-size: 24px;
+}
+
+#guesses-container {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px; /* Add margin to the top of the button */
+}
