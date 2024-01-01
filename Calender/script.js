@@ -45,7 +45,7 @@ generateCalender = (month,year) => {
 
     let first_day = new Date(month, year , 1)
 
-    for (let i = -1; i <= days_of_month[month] + first_day.getDay() -1 ; i++) {
+    for (let i = -2; i <= days_of_month[month] + first_day.getDay() -1 ; i++) {
         let day = document.createElement('div')
 
         if(i >= first_day.getDay()){
