@@ -62,3 +62,21 @@ body {
 .item-box:hover {
     background: #576b95;
 }
+
+/* Media query for screens with a maximum width of 600px (typical for phones) */
+@media (max-width: 600px) {
+    .wrapper {
+        width: 90vmin;
+        height: auto;
+    }
+
+    .banner {
+        font-size: 1rem;
+        padding: 15px;
+    }
+
+    .item-box {
+        font-size: 1rem;
+        padding: 15px;
+    }
+}
