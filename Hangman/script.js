@@ -3,18 +3,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let selectedWord = "";
     let guessedLetters = [];
-    let maxAttempts = 6;
+    let maxAttempts = 7;
+    let attemptsMade = 0; // Add this line to declare attemptsMade
 
     const wordContainer = document.getElementById("word-container");
     const guessesContainer = document.getElementById("guesses-container");
     const newGameBtn = document.getElementById("new-game-btn");
+    
 
     function newGame() {
         // Reset variables
         selectedWord = words[Math.floor(Math.random() * words.length)].toUpperCase();
         guessedLetters = [];
-        maxAttempts =30;
+        maxAttempts = 7;
+        attemptsMade = 0;
 
+        document.getElementById("letter-input").value = "";
         // Display dashes for the word
         displayWord();
 
@@ -41,26 +45,29 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     function updateGuesses() {
-        guessesContainer.textContent = `Incorrect Guesses: ${guessedLetters.join(", ")}`;
+        guessesContainer.textContent = `Incorrect Guesses (Limit: ${maxAttempts}): ${guessedLetters.join(", ")} (${attemptsMade})`;
     }
 
     function handleGuess(event) {
         const guess = event.key.toUpperCase();
-
+    
         if (isAlpha(guess) && guessedLetters.indexOf(guess) === -1) {
             guessedLetters.push(guess);
-
+    
             if (selectedWord.indexOf(guess) === -1) {
-                maxAttempts--;
-
-                if (maxAttempts === 0) {
+                attemptsMade++;
+    
+                if (attemptsMade >= maxAttempts) {
                     endGame(false);
-                }
+                    document.getElementById("letter-input").disabled = true;
+                return;
             }
-
+                    
+            }
+    
             displayWord();
             updateGuesses();
-
+    
             if (!wordContainer.textContent.includes("_")) {
                 endGame(true);
             }
@@ -69,14 +76,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function endGame(isWinner) {
         document.removeEventListener("keydown", handleGuess);
-
+    
         if (isWinner) {
             wordContainer.textContent = `Congratulations! You guessed the word "${selectedWord}"!`;
         } else {
-            wordContainer.textContent = `Sorry, you ran out of attempts. The word was "${selectedWord}".`;
+            guessesContainer.textContent = `Incorrect Guesses: ${guessedLetters.join(", ")} (${attemptsMade})`;
+            wordContainer.textContent = `Game Over! The word was "${selectedWord}".`;
         }
-
+    
+        // Reset game state
         newGameBtn.style.display = "block";
+        selectedWord = "";
+        guessedLetters = [];
+        maxAttempts = 7;
+        attemptsMade = 0;
+        
+        
     }
 
     function isAlpha(char) {

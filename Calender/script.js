@@ -95,4 +95,6 @@ let currDate = new Date()
 let curr_month = {value: currDate.getMonth()}
 let curr_year = {value: currDate.getFullYear()}
 
+console.log(currDate, curr_year, curr_month)
+
 generateCalender(curr_month.value, curr_year.value)
