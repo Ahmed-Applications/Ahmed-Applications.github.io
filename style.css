@@ -45,6 +45,10 @@ body {
     gap: 10px; /* Added gap between item-box elements */
 }
 
+#Reminder{
+    width: 96%;
+}
+
 .item-box {
     display: flex;
     align-items: center;
@@ -56,7 +60,7 @@ body {
     border-radius: 8px;
     padding: 20px;
     font-size: 1.2rem;
-    transition: background 0.3s ease-in-out;
+    transition: 0.3s ease-in-out;
 }
 
 .item-box:hover {
